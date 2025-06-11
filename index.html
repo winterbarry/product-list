@@ -19,74 +19,80 @@
           <p>Waffle</p>
           <p>Waffle with Berries</p>
           <p>$6.50</p>
-          <button>Add to Cart</button>
+          <button class="add-to-cart" data-name="Waffle with Berries">Add to Cart</button>
         </div>
 
         <div class="dessert">
           <p>Crème Brûlée</p>
           <p>Vanilla Bean Crème Brûlée</p>
           <p>$7.00</p>
-          <button>Add to Cart</button>
+          <button class="add-to-cart" data-name="Vanilla Bean Crème Brûlée">Add to Cart</button>
         </div>
 
         <div class="dessert">
           <p>Macaron</p>
           <p>Macaron Mix of Five</p>
           <p>$8.00</p>
-          <button>Add to Cart</button>
+          <button class="add-to-cart" data-name="Macaron Mix of Five">Add to Cart</button>
         </div>
 
         <div class="dessert">
           <p>Tiramisu</p>
           <p>Classic Tiramisu</p>
           <p>$5.50</p>
-          <button>Add to Cart</button>
+          <button class="add-to-cart" data-name="Classic Tiramisu">Add to Cart</button>
         </div>
 
         <div class="dessert">
           <p>Baklava</p>
-          <p>Pistachio Baklava</p>
+          <p>Classic Tiramisu</p>
           <p>$4.00</p>
-          <button>Add to Cart</button>
+          <button class="add-to-cart" data-name="Classic Tiramisu">Add to Cart</button>
         </div>
 
         <div class="dessert">
           <p>Pie</p>
           <p>Lemon Meringue Pie</p>
           <p>$5.00</p>
-          <button>Add to Cart</button>
+          <button class="add-to-cart" data-name="Lemon Meringue Pie">Add to Cart</button>
         </div>
 
         <div class="dessert">
           <p>Cake</p>
           <p>Red Velvet Cake</p>
           <p>$4.50</p>
-          <button>Add to Cart</button>
+          <button class="add-to-cart" data-name="Red Velvet Cake">Add to Cart</button>
         </div>
 
         <div class="dessert">
           <p>Brownie</p>
           <p>Salted Caramel Brownie</p>
           <p>$4.50</p>
-          <button>Add to Cart</button>
+          <button class="add-to-cart" data-name="Salted Caramel Brownie">Add to Cart</button>
         </div>
 
         <div class="dessert">
           <p>Panna Cotta</p>
           <p>Vanilla Panna Cotta</p>
           <p>$6.50</p>
-          <button>Add to Cart</button>
+          <button class="add-to-cart" data-name="Vanilla Panna Cotta">Add to Cart</button>
         </div>
+        
       </div>
     </main>
 
     <aside class="aside">
-      <div class="cart-text">
-        <h2>Your Cart (0)</h2>
-      </div>
+      <div class="cart-container">
 
-      <div class="cart-placeholder">
-        <!-- dynamically place cart items here -->
+        <div class="cart-text">
+          <h2>Your Cart (0)</h2>
+        </div>
+
+        <div class="cart-placeholder">
+          <p>No Items Yet</p>
+          <!-- dynamically place cart items here -->
+        </div>
+
       </div>
     </aside>
     
@@ -96,8 +102,26 @@
         Coded by Obe Ajilima.
       </div>
     </footer>
+
+    <div class="confirm-container" hidden>
+
+      <div class="confirm-text">
+        <h1>Order Confirmed!</h1>
+        <p>We hope you enjoy your food</p>
+      </div>
+
+      <div class="item-details">
+        <!-- final item details here -->
+      </div>
+
+      <div class="start-new">
+        <button>Start New Order</button>
+      </div>
+      
+    </div>
   </div>
 
   <script src="script.js" defer></script>
 </body>
 </html>
+
