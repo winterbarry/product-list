@@ -22,6 +22,69 @@ document.querySelectorAll('.add-to-cart').forEach(button => {
             cart.push(cartItem);
         }
 
-        console.log(cart); 
+        console.log(cart);
+        renderToCart(); 
     });
 });
+
+function renderToCart() {
+  const cartPlaceholder = document.getElementById('cart-placeholder');
+  const cartHeader = document.querySelector('.cart-text h2');
+
+  cartPlaceholder.innerHTML = '';
+
+  if (cart.length === 0) {
+    const p = document.createElement('p');
+    p.id = 'placeholder-message';
+    p.textContent = 'No Items Yet';
+    cartPlaceholder.appendChild(p);
+  } else {
+    cart.forEach((item, index) => {
+      const newItem = document.createElement('div');
+      newItem.classList.add('newItem');
+
+      const newItemDetails = document.createElement('div');
+      newItemDetails.classList.add('newItemDetails');
+
+      const nameDiv = document.createElement('div');
+      nameDiv.classList.add('newItemName');
+      nameDiv.textContent = item.name;
+
+      const dataDiv = document.createElement('div');
+      dataDiv.classList.add('newItemData');
+      dataDiv.innerHTML = `
+        <span>Amount: ${item.amount}</span>
+        <span>Price: $${item.price.toFixed(2)}</span>
+        <span>Total: $${item.totalPrice.toFixed(2)}</span>
+      `;
+
+      newItemDetails.append(nameDiv, dataDiv);
+
+      const removeWrapper = document.createElement('div');
+      removeWrapper.classList.add('newItemRemoveBtn');
+      const removeBtn = document.createElement('button');
+      removeBtn.textContent = 'Remove';
+      removeWrapper.appendChild(removeBtn);
+
+      removeBtn.addEventListener('click', () => {
+        if (item.amount > 1) {
+          item.amount -= 1;
+          item.totalPrice = item.amount * item.price;
+        } else {
+          cart.splice(index, 1);
+        }
+        renderToCart();
+      });
+
+      newItem.append(newItemDetails, removeWrapper);
+      cartPlaceholder.appendChild(newItem);
+    });
+  }
+
+  // update cart counter
+  let totalItems = 0;
+  for (const item of cart) {
+    totalItems += item.amount;
+  }
+  cartHeader.textContent = `Your Cart (${totalItems})`;
+}
