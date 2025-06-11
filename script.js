@@ -33,12 +33,16 @@ function renderToCart() {
 
   cartPlaceholder.innerHTML = '';
 
+  /// render placeholder
   if (cart.length === 0) {
     const p = document.createElement('p');
     p.id = 'placeholder-message';
     p.textContent = 'No Items Yet';
     cartPlaceholder.appendChild(p);
   } else {
+    let totalCost = 0;
+    
+    // render new item details
     cart.forEach((item, index) => {
       const newItem = document.createElement('div');
       newItem.classList.add('newItem');
@@ -60,6 +64,7 @@ function renderToCart() {
 
       newItemDetails.append(nameDiv, dataDiv);
 
+      // adding the remove buttom
       const removeWrapper = document.createElement('div');
       removeWrapper.classList.add('newItemRemoveBtn');
       const removeBtn = document.createElement('button');
@@ -76,9 +81,36 @@ function renderToCart() {
         renderToCart();
       });
 
+      // display item details and remove button
       newItem.append(newItemDetails, removeWrapper);
+      newItem.style.marginTop = '1rem';
       cartPlaceholder.appendChild(newItem);
+
+      // calc total of all items
+      totalCost += item.totalPrice;
     });
+
+    // render total cost div
+    const totalCostDiv = document.createElement('div');
+    totalCostDiv.classList.add('total-cost');
+    totalCostDiv.style.marginTop = '1rem';
+    totalCostDiv.style.fontWeight = 'bold';
+    totalCostDiv.textContent = `Total Cost: $${totalCost.toFixed(2)}`;
+    cartPlaceholder.appendChild(totalCostDiv);
+
+    // render carbon netral textt
+    const carbonDiv = document.createElement('div');
+    carbonDiv.textContent = 'This is a carbon neutral order';
+    carbonDiv.style.marginTop = '1rem';
+    cartPlaceholder.appendChild(carbonDiv);
+
+    // render confirm button
+    const confirmBtnDiv = document.createElement('div');
+    const confirmBtn = document.createElement('button');
+    confirmBtn.textContent = 'Confirm Order'
+    confirmBtnDiv.appendChild(confirmBtn);
+    confirmBtnDiv.style.marginTop = '1rem';
+    cartPlaceholder.appendChild(confirmBtnDiv);
   }
 
   // update cart counter
