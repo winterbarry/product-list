@@ -169,7 +169,16 @@ function renderToCart() {
         //reset cart array
         cart.length = 0;
         console.log(cart);
-        
+
+        // reset cart placeholder
+        cartPlaceholder.innerHTML = '';
+        const newParagraph = document.createElement('p');
+        newParagraph.id = 'placeholder-message';
+        newParagraph.textContent = 'No Items Yet';
+        cartPlaceholder.appendChild(newParagraph);
+
+        // hide confirm div
+        confirmContainer.hidden = true;
       })
     })
   }
