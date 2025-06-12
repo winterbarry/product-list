@@ -1,4 +1,5 @@
 let cart = [];
+let cartTotal = 0;
 
 document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', (event) => {
@@ -90,12 +91,15 @@ function renderToCart() {
       totalCost += item.totalPrice;
     });
 
+    // set global cart total cost
+    cartTotal = totalCost;
+
     // render total cost div
     const totalCostDiv = document.createElement('div');
     totalCostDiv.classList.add('total-cost');
     totalCostDiv.style.marginTop = '1rem';
     totalCostDiv.style.fontWeight = 'bold';
-    totalCostDiv.textContent = `Total Cost: $${totalCost.toFixed(2)}`;
+    totalCostDiv.textContent = `Order Total: $${totalCost.toFixed(2)}`;
     cartPlaceholder.appendChild(totalCostDiv);
 
     // render carbon netral textt
@@ -111,6 +115,59 @@ function renderToCart() {
     confirmBtnDiv.appendChild(confirmBtn);
     confirmBtnDiv.style.marginTop = '1rem';
     cartPlaceholder.appendChild(confirmBtnDiv);
+
+    // render final order
+    confirmBtn.addEventListener('click', () => {
+      const confirmContainer = document.querySelector('.confirm-container');
+      confirmContainer.hidden = false;
+
+      const finalPlaceholder = document.querySelector('.final-details');
+      finalPlaceholder.innerHTML = '';
+
+      // render final items
+      if (cart.length !== 0) {
+        cart.forEach((item, index) => {
+        const finalItem = document.createElement('div');
+        finalItem.classList.add('finalItem');
+
+        const finalItemDetails = document.createElement('div');
+        finalItemDetails.classList.add('finalItemDetails');
+
+        const finalNameDiv = document.createElement('div');
+        finalNameDiv.classList.add('finalItemName');
+        finalNameDiv.textContent = item.name;
+
+        const finalDataDiv = document.createElement('div');
+        finalDataDiv.classList.add('finalItemData');
+        finalDataDiv.innerHTML = `
+          <span>Amount: ${item.amount}</span>
+          <span>Price: $${item.price.toFixed(2)}</span>
+          <span>Total: $${item.totalPrice.toFixed(2)}</span>
+        `;
+
+        finalItemDetails.append(finalNameDiv, finalDataDiv);
+
+        // display item details and remove button
+        finalItem.append(finalItemDetails);
+        finalItem.style.marginTop = '1rem';
+        finalPlaceholder.appendChild(finalItem);
+        });
+      }
+
+      // render final cost div
+      const finalCostDiv = document.createElement('div');
+      finalCostDiv.classList.add('total-cost');
+      finalCostDiv.style.marginTop = '1rem';
+      finalCostDiv.style.fontWeight = 'bold';
+      finalCostDiv.textContent = `Order Total: $${cartTotal.toFixed(2)}`;
+      finalPlaceholder.appendChild(finalCostDiv);
+
+      // reset program
+      const startNew = document.querySelector('.start-new');
+      startNew.addEventListener('click', () => {
+
+      })
+    })
   }
 
   // update cart counter
