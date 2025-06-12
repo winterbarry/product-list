@@ -166,6 +166,10 @@ function renderToCart() {
       const startNew = document.querySelector('.start-new');
       startNew.addEventListener('click', () => {
 
+        //reset cart array
+        cart.length = 0;
+        console.log(cart);
+        
       })
     })
   }
