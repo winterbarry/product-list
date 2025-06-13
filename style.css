@@ -35,6 +35,17 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* MAIN STYLES START HERE, LEAVE FONTS FOR LAST */
+body {
+  background-color: #fef6f2;
+}
+
+.dessert-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 3 columns on wide screens */
+  gap: 1.5rem;
+  padding-top: 1rem;
+}
 
 /* mobile */
 @media (max-width: 768px) {

@@ -179,6 +179,9 @@ function renderToCart() {
 
         // hide confirm div
         confirmContainer.hidden = true;
+
+        // reset cart header
+        cartHeader.textContent = 'Your Cart (0)';
       })
     })
   }
