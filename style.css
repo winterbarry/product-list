@@ -42,9 +42,16 @@ body {
 
 .dessert-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 3 columns on wide screens */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
   gap: 1.5rem;
   padding-top: 1rem;
+}
+
+.dessert img {
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+  display: block;
 }
 
 /* mobile */
