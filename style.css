@@ -35,10 +35,11 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* MAIN STYLES START HERE, LEAVE FONTS FOR LAST */
 body {
   background-color: #fef6f2;
 }
+
+/* MAIN SECTION STYLES */
 
 /* arrange desserts in rows */
 .dessert-container {
@@ -64,11 +65,68 @@ body {
 .add-to-cart {
   position: absolute;
   z-index: 1;
-  top: 240px;      
+  top: 230px;      
   left: 50%;
   transform: translateX(-50%);
 }
 
+/* global font setting */
+@font-face {
+  font-family: 'RedHatText-Regular';
+  src: url('assets/fonts/static/RedHatText-Regular.ttf') format('ttf');
+}
+
+body {
+  font-family: 'RedHatText-Regular', sans-serif;
+}
+
+/* global text color settings */
+:root {
+  --text-primary: #2f2f2f;
+  --text-secondary: #656565;
+  --accent-color: #e97f6a;
+  --text-light: #ffffff;
+  --text-muted: #8c8c8c;
+  --footer-text: #5e5e5e;
+}
+
+h1 {
+  color: var(--text-primary);
+  font-weight: bold;
+}
+
+.dessert p:nth-of-type(1) {
+  color: var(--text-muted);
+}
+
+.dessert p:nth-of-type(2) {
+  color: var(--text-primary);
+  font-weight: bold;
+}
+
+.dessert p:nth-of-type(3) {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+/* main content button styles */
+.add-to-cart {
+  background-image: url('assets/images/icon-add-to-cart.svg');
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  padding-left: 40px; 
+  padding-right: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 999px;
+  border: none;
+  border: 1px solid #8c8c8c;;
+}
+
+/* Others */
+.dessert img {
+  margin-bottom: 2rem;  
+}
 
 /* mobile */
 @media (max-width: 768px) {
