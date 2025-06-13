@@ -40,6 +40,7 @@ body {
   background-color: #fef6f2;
 }
 
+/* arrange desserts in rows */
 .dessert-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
@@ -47,12 +48,27 @@ body {
   padding-top: 1rem;
 }
 
+/* resize each dessert img */
 .dessert img {
   width: 100%;
   height: 250px;
   object-fit: contain;
   display: block;
 }
+
+/* repositioned buttons */
+.dessert {
+  position: relative;
+}
+
+.add-to-cart {
+  position: absolute;
+  z-index: 1;
+  top: 240px;      
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 
 /* mobile */
 @media (max-width: 768px) {
