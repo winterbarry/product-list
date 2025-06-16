@@ -123,9 +123,26 @@ h1 {
   border: 1px solid #8c8c8c;;
 }
 
+.add-to-cart:hover {
+  background-color: #a93f1c;
+  color: white;
+}
+
 /* Others */
 .dessert img {
-  margin-bottom: 2rem;  
+  margin-bottom: 2rem;
+}
+
+.dessert {
+  background-color: #fef6f2;
+}
+
+.header {
+  padding-left: 12px;
+}
+
+p {
+  padding-left: 10px;
 }
 
 /* mobile */
