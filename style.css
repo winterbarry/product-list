@@ -55,6 +55,7 @@ body {
   height: 250px;
   object-fit: contain;
   display: block;
+  border-radius: 8%;
 }
 
 /* repositioned buttons */
@@ -144,6 +145,135 @@ h1 {
 p {
   padding-left: 10px;
 }
+
+/* ASIDE STYLES */
+
+/* cart placeholder styles */
+.cart-text {
+  color: var(--accent-color);
+  padding-left: 20px;
+  padding-top: 3px;
+}
+
+.cart-container {
+  background-color: white;
+  padding: 2rem;
+  /* border-radius: 8%; */
+}
+
+.cart-container:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-placeholder img {
+  display: block;
+  margin: 0 auto;
+  padding-bottom: 10px;
+}
+
+#placeholder-message {
+  margin: 0 auto;
+  text-align: center;
+  color: var(--text-muted);
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+/* cart item styles */
+.newItem {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #ccc;
+  padding: 1rem 0;
+}
+
+.newItemName {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.newItemData {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.amount {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+.price {
+  color: var(--text-secondary);
+}
+
+.newItemRemoveBtn {
+  margin-left: 2rem;
+}
+
+.newItemRemoveBtn button {
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.newItemRemoveBtn button:hover {
+opacity: 0.5;
+}
+
+.total-cost {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+
+.order-total-text {
+  color: #555;;
+}
+
+.order-total-int {
+  color: var(--text-primary);
+  font-weight: bold
+}
+
+.carbon-neutral {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  gap: 0.5rem; 
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  background-color: #fef6f2;
+  padding: 10px;
+  white-space: nowrap;
+}
+
+.carbon-text {
+  color: var(--text-primary);
+}
+
+.confirm {
+  margin-bottom: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.confirm-btn {
+  border-radius: 999px;
+  padding: 10px 60px;
+  background-color: #a93f1c;
+  border: none;
+  color: white;
+}
+
+.confirm-btn:hover {
+  opacity: 50%;
+}
+
+/* FINAL ORDER STYLES */
+
 
 /* mobile */
 @media (max-width: 768px) {

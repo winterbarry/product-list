@@ -58,9 +58,9 @@ function renderToCart() {
       const dataDiv = document.createElement('div');
       dataDiv.classList.add('newItemData');
       dataDiv.innerHTML = `
-        <span>Amount: ${item.amount}</span>
-        <span>Price: $${item.price.toFixed(2)}</span>
-        <span>Total: $${item.totalPrice.toFixed(2)}</span>
+        <span class="amount"> ${item.amount}x</span>
+        <span class="price"> $${item.price.toFixed(2)}</span>
+        <span class="price"> $${item.totalPrice.toFixed(2)}</span>
       `;
 
       newItemDetails.append(nameDiv, dataDiv);
@@ -69,7 +69,12 @@ function renderToCart() {
       const removeWrapper = document.createElement('div');
       removeWrapper.classList.add('newItemRemoveBtn');
       const removeBtn = document.createElement('button');
-      removeBtn.textContent = 'Remove';
+      const removeImg = document.createElement('img');
+      removeImg.src = 'assets/images/icon-remove-item.svg'; 
+      removeImg.alt = 'Remove Item Sign';
+
+      removeBtn.appendChild(removeImg);
+
       removeWrapper.appendChild(removeBtn);
 
       removeBtn.addEventListener('click', () => {
@@ -97,20 +102,42 @@ function renderToCart() {
     // render total cost div
     const totalCostDiv = document.createElement('div');
     totalCostDiv.classList.add('total-cost');
-    totalCostDiv.style.marginTop = '1rem';
-    totalCostDiv.style.fontWeight = 'bold';
-    totalCostDiv.textContent = `Order Total: $${totalCost.toFixed(2)}`;
+
+    const labelSpan = document.createElement('span');
+    labelSpan.classList.add('order-total-text');
+    labelSpan.textContent = 'Order Total';
+
+    const priceSpan = document.createElement('span');
+    priceSpan.classList.add('order-total-int');
+    priceSpan.textContent = `$${totalCost.toFixed(2)}`;
+
+    totalCostDiv.append(labelSpan, priceSpan);
     cartPlaceholder.appendChild(totalCostDiv);
+
 
     // render carbon netral textt
     const carbonDiv = document.createElement('div');
-    carbonDiv.textContent = 'This is a carbon neutral order';
-    carbonDiv.style.marginTop = '1rem';
+    carbonDiv.classList.add('carbon-neutral');
+
+    const imageDiv = document.createElement('div');
+    imageDiv.classList.add('carbon-image');
+    const image = document.createElement('img');
+    image.src = 'assets/images/icon-carbon-neutral.svg';
+    image.alt = 'Carbon Neutral Icon';
+    imageDiv.appendChild(image);
+
+    const textDiv = document.createElement('div');
+    textDiv.classList.add('carbon-text');
+    textDiv.innerHTML = 'This is a <strong>carbon neutral</strong> delivery';
+
+    carbonDiv.append(imageDiv, textDiv);
     cartPlaceholder.appendChild(carbonDiv);
 
     // render confirm button
     const confirmBtnDiv = document.createElement('div');
+    confirmBtnDiv.classList.add('confirm');
     const confirmBtn = document.createElement('button');
+    confirmBtn.classList.add('confirm-btn');
     confirmBtn.textContent = 'Confirm Order'
     confirmBtnDiv.appendChild(confirmBtn);
     confirmBtnDiv.style.marginTop = '1rem';
@@ -140,9 +167,9 @@ function renderToCart() {
         const finalDataDiv = document.createElement('div');
         finalDataDiv.classList.add('finalItemData');
         finalDataDiv.innerHTML = `
-          <span>Amount: ${item.amount}</span>
-          <span>Price: $${item.price.toFixed(2)}</span>
-          <span>Total: $${item.totalPrice.toFixed(2)}</span>
+        <span class="amount"> ${item.amount}x</span>
+        <span class="price"> $${item.price.toFixed(2)}</span>
+        <span class="price"> $${item.totalPrice.toFixed(2)}</span>
         `;
 
         finalItemDetails.append(finalNameDiv, finalDataDiv);
