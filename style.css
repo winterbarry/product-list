@@ -432,4 +432,13 @@ p {
     width: 80%;
     padding: 0.5rem;
   }
+
+  .final-details {
+    padding: 0.5rem;
+  }
+
+  .final-item {
+    display: flex;
+    gap: 0.5rem;
+  }
 }
