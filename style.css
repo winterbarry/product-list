@@ -436,16 +436,4 @@ p {
   .final-details {
     padding: 0.5rem;
   }
-
-  .final-item {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem; 
-  }
-
-  .confirm-total-price {
-    padding-top: 0px;
-    margin-left: auto;
-  }
 }
