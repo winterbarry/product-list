@@ -1,6 +1,19 @@
 let cart = [];
 let cartTotal = 0;
 
+const imageMap = {
+  "Waffle with Berries": "assets/images/image-waffle-desktop.jpg",
+  "Vanilla Bean Crème Brûlée": "assets/images/image-creme-brulee-desktop.jpg",
+  "Macaron Mix of Five": "assets/images/image-macaron-desktop.jpg",
+  "Classic Tiramisu": "assets/images/image-tiramisu-desktop.jpg",
+  "Pistachio Baklava": "assets/images/image-baklava-desktop.jpg",
+  "Lemon Meringue Pie": "assets/images/image-meringue-desktop.jpg",
+  "Red Velvet Cake": "assets/images/image-cake-desktop.jpg",
+  "Salted Caramel Brownie": "assets/images/image-brownie-desktop.jpg",
+  "Vanilla Panna Cotta": "assets/images/image-panna-cotta-desktop.jpg"
+};
+
+
 document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', (event) => {
         const dessertDiv = event.target.closest('.dessert'); // select parent element
@@ -58,9 +71,9 @@ function renderToCart() {
       const dataDiv = document.createElement('div');
       dataDiv.classList.add('newItemData');
       dataDiv.innerHTML = `
-        <span class="amount"> ${item.amount}x</span>
-        <span class="price"> $${item.price.toFixed(2)}</span>
-        <span class="price"> $${item.totalPrice.toFixed(2)}</span>
+        <span class="cart-amount"> ${item.amount}x</span>
+        <span class="cart-unit-price"> $${item.price.toFixed(2)}</span>
+        <span class="cart-total-price"> $${item.totalPrice.toFixed(2)}</span>
       `;
 
       newItemDetails.append(nameDiv, dataDiv);
@@ -69,11 +82,6 @@ function renderToCart() {
       const removeWrapper = document.createElement('div');
       removeWrapper.classList.add('newItemRemoveBtn');
       const removeBtn = document.createElement('button');
-      const removeImg = document.createElement('img');
-      removeImg.src = 'assets/images/icon-remove-item.svg'; 
-      removeImg.alt = 'Remove Item Sign';
-
-      removeBtn.appendChild(removeImg);
 
       removeWrapper.appendChild(removeBtn);
 
@@ -146,7 +154,10 @@ function renderToCart() {
     // render final order
     confirmBtn.addEventListener('click', () => {
       const confirmContainer = document.querySelector('.confirm-container');
+      const overlay = document.querySelector('.overlay');
+
       confirmContainer.hidden = false;
+      overlay.hidden = false;
 
       const finalPlaceholder = document.querySelector('.final-details');
       finalPlaceholder.innerHTML = '';
@@ -154,39 +165,72 @@ function renderToCart() {
       // render final items
       if (cart.length !== 0) {
         cart.forEach((item, index) => {
-        const finalItem = document.createElement('div');
-        finalItem.classList.add('finalItem');
+          const finalItem = document.createElement('div');
+          finalItem.classList.add('final-item');
 
-        const finalItemDetails = document.createElement('div');
-        finalItemDetails.classList.add('finalItemDetails');
+          // wrapper for image and details
+          const finalItemWrapper = document.createElement('div');
+          finalItemWrapper.classList.add('finalItemWrapper');
 
-        const finalNameDiv = document.createElement('div');
-        finalNameDiv.classList.add('finalItemName');
-        finalNameDiv.textContent = item.name;
+          // image wrapper
+          const imageWrapper = document.createElement('div');
+          imageWrapper.classList.add('finalItemImageWrapper');
+          const img = document.createElement('img');
+          img.src = imageMap[item.name];
+          img.alt = `Image of ${item.name}`;
+          img.classList.add('finalItemImage');
+          imageWrapper.appendChild(img);
 
-        const finalDataDiv = document.createElement('div');
-        finalDataDiv.classList.add('finalItemData');
-        finalDataDiv.innerHTML = `
-        <span class="amount"> ${item.amount}x</span>
-        <span class="price"> $${item.price.toFixed(2)}</span>
-        <span class="price"> $${item.totalPrice.toFixed(2)}</span>
-        `;
+          // details wrapper
+          const finalItemDetails = document.createElement('div');
+          finalItemDetails.classList.add('finalItemDetails');
 
-        finalItemDetails.append(finalNameDiv, finalDataDiv);
+          const itemNameDiv = document.createElement('div');
+          itemNameDiv.classList.add('item-name');
+          itemNameDiv.textContent = item.name;
 
-        // display item details and remove button
-        finalItem.append(finalItemDetails);
-        finalItem.style.marginTop = '1rem';
-        finalPlaceholder.appendChild(finalItem);
+          const itemMetaDiv = document.createElement('div');
+          itemMetaDiv.classList.add('item-meta');
+
+          const amountSpan = document.createElement('span');
+          amountSpan.classList.add('final-amount');
+          amountSpan.textContent = `${item.amount}x`;
+
+          const priceSpan = document.createElement('span');
+          priceSpan.classList.add('final-price');
+          priceSpan.textContent = `$${item.price.toFixed(2)}`;
+
+
+          itemMetaDiv.append(amountSpan, priceSpan);
+          finalItemDetails.append(itemNameDiv, itemMetaDiv);
+
+          finalItemWrapper.append(imageWrapper, finalItemDetails);
+
+          // final price on the side
+          const finalPriceDiv = document.createElement('div');
+          finalPriceDiv.classList.add('confirm-total-price');
+          finalPriceDiv.innerHTML = `<span>$${item.totalPrice.toFixed(2)}</span>`;
+
+          finalItem.append(finalItemWrapper, finalPriceDiv);
+          finalItem.style.marginTop = '1rem';
+
+          finalPlaceholder.appendChild(finalItem);
         });
       }
 
       // render final cost div
       const finalCostDiv = document.createElement('div');
-      finalCostDiv.classList.add('total-cost');
-      finalCostDiv.style.marginTop = '1rem';
-      finalCostDiv.style.fontWeight = 'bold';
-      finalCostDiv.textContent = `Order Total: $${cartTotal.toFixed(2)}`;
+      finalCostDiv.classList.add('final-cost');
+
+      const orderTotalText = document.createElement('span');
+      orderTotalText.classList.add('order-total-text');
+      orderTotalText.textContent = 'Order Total';
+
+      const orderTotalInt = document.createElement('span');
+      orderTotalInt.classList.add('order-total-int');
+      orderTotalInt.textContent = `$${cartTotal.toFixed(2)}`;
+
+      finalCostDiv.append(orderTotalText, orderTotalInt);
       finalPlaceholder.appendChild(finalCostDiv);
 
       // reset program
@@ -206,6 +250,7 @@ function renderToCart() {
 
         // hide confirm div
         confirmContainer.hidden = true;
+        overlay.hidden = true;
 
         // reset cart header
         cartHeader.textContent = 'Your Cart (0)';
