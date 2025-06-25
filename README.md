@@ -54,6 +54,6 @@ In future projects, I want to
 
 ## Author
 
-- Website - Obe Ajilima
+- Obe Ajilima
 - Frontend Mentor - winterbarry
 
