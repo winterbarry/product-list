@@ -406,9 +406,30 @@ p {
   .container {
     grid-template-areas:
       "header"
-      "aside"
       "main"
+      "aside"
       "footer";
     grid-template-columns: 1fr;
+  }
+
+  .confirm-container {
+    width: 90%;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    grid-template-areas:
+      "header"
+      "main"
+      "aside"
+      "footer";
+    grid-template-columns: 1fr;
+  }
+  
+  .confirm-container {
+    width: 95%;
+    padding: 1rem;
   }
 }
